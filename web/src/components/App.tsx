@@ -20,6 +20,7 @@ import Datasets from '../routes/datasets/Datasets'
 import Events from '../routes/events/Events'
 import Header from './header/Header'
 import Jobs from '../routes/jobs/Jobs'
+import KSM_favicon from '../img/KSM-favicon-white.svg'
 import React, { ReactElement } from 'react'
 import Sidenav from './sidenav/Sidenav'
 import TableLevel from '../routes/table-level/TableLevel'
@@ -27,7 +28,6 @@ import Toast from './Toast'
 import createRootReducer from '../store/reducers'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from '../store/sagas'
-import KSM_favicon from "../img/KSM-favicon-white.svg"
 
 const sagaMiddleware = createSagaMiddleware({
   onError: (error, _sagaStackIgnored) => {
@@ -55,8 +55,8 @@ const App = (): ReactElement => {
             <ThemeProvider theme={theme}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Helmet>
-                  <title>{TITLE}</title>  
-                  <link rel="icon" href={KSM_favicon} type="image/svg+xml" sizes='any'/>
+                  <title>{TITLE}</title>
+                  <link rel='icon' href={KSM_favicon} type='image/svg+xml' sizes='any' />
                 </Helmet>
                 <CssBaseline />
                 <Box ml={'80px'}>

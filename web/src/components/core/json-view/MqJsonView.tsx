@@ -37,7 +37,7 @@ const mqTheme = {
  * @returns {value is URL} `true` if the value is a `URL` object, `false` otherwise.
  */
 function isURL(value: any): value is URL {
-  return typeof value === 'object' && value instanceof URL && 'href' in value;
+  return typeof value === 'object' && value instanceof URL && 'href' in value
 }
 
 /**
@@ -51,27 +51,27 @@ function isURL(value: any): value is URL {
 
 function convertStringsToUrls(obj: any): any {
   if (Array.isArray(obj)) {
-    return obj.map(convertStringsToUrls);
+    return obj.map(convertStringsToUrls)
   }
 
   if (obj && typeof obj === 'object') {
-    const newObj: any = {};
+    const newObj: any = {}
     for (const key in obj) {
-      const value = obj[key];
+      const value = obj[key]
       if (typeof value === 'string' && value.startsWith('http')) {
         try {
-          newObj[key] = new URL(value);
+          newObj[key] = new URL(value)
         } catch {
-          newObj[key] = value;
+          newObj[key] = value
         }
       } else {
-        newObj[key] = convertStringsToUrls(value);
+        newObj[key] = convertStringsToUrls(value)
       }
     }
-    return newObj;
+    return newObj
   }
 
-  return obj;
+  return obj
 }
 
 const MqJsonView: React.FC<JsonViewProps> = ({ data }) => {
@@ -80,21 +80,21 @@ const MqJsonView: React.FC<JsonViewProps> = ({ data }) => {
   return (
     // <Box my={2}>
     //   <JsonView
-    //    style={mqTheme} collapsed={2} value={data} 
+    //    style={mqTheme} collapsed={2} value={data}
     //    />
     // </Box>
- <Box my={2}>
+    <Box my={2}>
       <JsonView value={processedData} collapsed={2} style={mqTheme}>
         <JsonView.Url
           render={(props, { type, value }) => {
             if (type === 'value' && isURL(value)) {
               return (
-                <a href={value.href} target="_blank" rel="noopener noreferrer" {...props}>
+                <a href={value.href} target='_blank' rel='noopener noreferrer' {...props}>
                   {value.href}
                 </a>
-              );
+              )
             }
-            return undefined;
+            return undefined
           }}
         />
       </JsonView>
